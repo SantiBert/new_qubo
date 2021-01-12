@@ -26,6 +26,98 @@ footer{
     box-sizing: border-box;    
 }
 
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 
 .row p {
   color: #000000;
@@ -186,3 +278,68 @@ footer{
 .links a i {
   font-size: 3rem;
 }
+
+/*
+.owl-prev {
+  left: 10px;
+}
+
+.owl-netx {
+  left: 10px;
+}
+
+.owl-prev {
+  left: 10px;
+}
+
+.owl-netx, .owl-prev {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   margin-top: auto;
+   margin-bottom: auto;
+  }
+
+.owl-prev:hover, .owl-prev:active, .owl-prev :focus, .owl-netx:hover, .owl-netx:active, .owl-netx:focus {
+  outline: 0;
+}
+
+.owl-prev span, .owl-netx span {
+  font-size: 60px;
+  color: #4DC7A0;
+  text-shadow: 1px 1px 5px #999;
+}
+
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background-color: transparent;
+}
+
+.owl-dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.owl-dot:hover, .owl-dot:active, .owl-dot:focus {
+  outline: 0;
+}
+
+.item-body {
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.item-body h5, .item-body p { 
+  margin: 0;
+}
+*/
+
