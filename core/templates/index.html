@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/qubo_icon.png'%}">
     <link rel="icon" type="image/png" href="{% static './img/qubo_icon.png'%}">
-    <title>Qubo</title>
+    <title>{% block title %}Qubo{% endblock title %}</title>
     <!--FontAwesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
@@ -30,38 +30,46 @@
     <link rel="stylesheet" href="{% static './fonts/flaticon/font/flaticon.css' %}">
     <link rel="stylesheet" href="{% static './css/aos.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
     {% block extracss %}
     {% endblock %}
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="#"><img src="{% static './img/qubo.png'%}" alt="Qubo LOGO" height="60px"></a>
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static './img/qubo.png'%}" alt="Qubo LOGO"
+                height="60px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</a>
+                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'index' %}"">Inicio</a>
                 </li>
                 {% for category in categories %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{{ category.name }}</a>
+                <li class=" nav-item">
+                        <a class="nav-link {% if request.path == '/category.slug/' %}active{% endif %}"
+                            href="{% url 'blog:categories' category.slug %}">{{ category.name }}</a>
                 </li>
                 {% endfor %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Contacto </a>
+                    <a class="nav-link {% if request.path == '/contact_us/' %}active{% endif %}"
+                        href="{% url 'contact_us' %}"> Contacto </a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-            </form>
+        </div>
+        <form method="POST" action="{%url 'search'%}">
+            <div class="form-inline my-2 my-lg-0">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar">
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>
+            </div>
+        </form>
         </div>
     </nav>
+    {% block content %}
     <header>
         <div class="slide-one-item home-slider owl-carousel">
             {% for featured in featureds %}
@@ -87,43 +95,16 @@
         </div>
     </header>
     <div class="news-card">
+        {% for recent in recents %}
         <div>
-            <img src="{% static './img/card-1.jpg'%}" alt="">
-            <h3>Titulo 2</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti consequatur explicabo voluptatum
-                impedit quasi perspiciatis, exercitationem totam velit facere!</p>
-            <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+            <img src="{{ recent.image_ref.url}}" alt="" href="{% url 'blog:blog' recent.id recent.name|slugify %}">
+            <h3>{{ recent.name }}</h3>
+            <p>{{ recent.description |safe|truncatechars:"200"}}</p>
+            <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">Ver más <i
+                    class="fas fa-angle-double-right"></i></a>
         </div>
-        <div>
-            <img src="{% static './img/card-2.jpg'%}" alt="">
-            <h3>Titulo 3</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti consequatur explicabo voluptatum
-                impedit quasi perspiciatis, exercitationem totam velit facere!</p>
-            <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-            <img src="{% static 'img/card-3.jpg'%}" alt="">
-            <h3>Titulo 4</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti consequatur explicabo voluptatum
-                impedit quasi perspiciatis, exercitationem totam velit facere!</p>
-            <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-            <img src="{% static './img/card-4.jpg'%}" alt="">
-            <h3>Titulo 5</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti consequatur explicabo voluptatum
-                impedit quasi perspiciatis, exercitationem totam velit facere!</p>
-            <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-            <img src="{% static './img/card-5.jpg'%}" alt="">
-            <h3>Titulo 5</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti consequatur explicabo voluptatum
-                impedit quasi perspiciatis, exercitationem totam velit facere!</p>
-            <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
+        {% endfor %}
     </div>
-
     <img src="{% static 'img/qubo.png'%}" class="img-fluid img-thumbnail mx-auto d-block" width="70%"
         alt="Responsive image" style="margin-bottom:20px; padding: 15px;">
 
@@ -196,14 +177,27 @@
             </div>
         </div>
     </div>
-
+    {% endblock content %}
     <!-- Footer -->
     <footer class="py-5" style="background-color: #000000;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md">
                     <img class="mb-2" src="{% static './img/qubo.png'%}" alt="" height="60px">
-                    <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                    <section class="social p-3">
+                        <div class="links p-3">
+                            <a href="https://facebook.com">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://linkdin.com">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </section>
+                    <small class="d-block mb-3 text-muted">&copy; 2020-2021</small>
                 </div>
                 <div class="col-6 col-md">
                     <h5 style="text-align: center;">Descripsion</h5>

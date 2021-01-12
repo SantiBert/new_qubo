@@ -9,8 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('core.urls')),
+    path('contact_us/', include('contac.urls')),
     path('blog/', include(blog_patterns)),
     path('administration/', include(blog_admin_patterns)),
+    path('social/', include('social.urls')),
     path('ckeditor', include('ckeditor_uploader.urls')),
 ]
 

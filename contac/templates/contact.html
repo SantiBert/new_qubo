@@ -1,0 +1,115 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Contáctanos{% endblock %}
+{% block content %}
+<!-- Start top-post Area -->
+<header>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" style="margin-bottom:20px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" filter-color="black" src="{% static './img/contac.jpg'%}"
+                    style="height: 550px; filter: brightness(80%);">
+                <h1 id="centered">Contacto</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- End top-post Area -->
+<!-- Start contact-page Area -->
+<section class="contact-page-area pt-50 pb-120">
+    <div class="container p-3 my-3 bg-dark text-white">
+        <div class="row contact-wrap">
+            <div class="col-lg-3 d-flex flex-column address-wrap">
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+                    <div class="contact-details">
+                        <p>E-mail personal</p>
+                        <h5>qubo.qultura@gmail.com</h5>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-users"></span>
+                    </div>
+                    {% comment 'contact' %}
+                    <!--div class="contact-details">
+                            <p>Redes Sociales</p>
+                            <div class="btn-group-vertical">
+                                {% for link in links %}
+                                {% if link.name == 'Facebook' and link.url %}
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info btn-social btn-facebook"
+                                        style="color: white; background-color:#3B5998;" href="{{link.url}}"
+                                        target="_blank">
+                                        <span class=" fa fa-facebook"></span> Facebook
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% if link.name == 'Twitter' and link.url %}
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-success btn-social btn-twitter"
+                                        style="color: white; background-color:#55ACEE;" href="{{link.url}}"
+                                        target="_blank">
+                                        <span class=" fa fa-twitter"></span> Twitter
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% if link.name == 'Instagram' and link.url %}
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-danger btn-social btn-instagram"
+                                        style="color: white; background-color:#EC4A89;" href="{{link.url}}"
+                                        target="_blank">
+                                        <span class=" fa fa-instagram"></span> Instagram
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% if link.name == 'Linkedin' and link.url %}
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info btn-social btn-linkedin"
+                                        style="color: white; background-color:#2E5E86;" href="{{link.url}}"
+                                        target="_blank">
+                                        <span class=" fa fa-linkedin"></span> Linkedin
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% endfor%}
+                            </div>
+                        </div-->
+                    {% endcomment %}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form action="#" method="post">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div style="padding: 15px;">
+                                {{ form.name }}
+                            </div>
+                            <div style="padding: 15px;">
+                                {{ form.lastname}}
+                            </div>
+                            <div style="padding: 15px;">
+                                {{ form.email}}
+                            </div>
+                            <div style="padding: 15px;">
+                                {{ form.issue}}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form.messaje}}
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="alert-msg" style="text-align: left;"></div>
+                            <button class="primary-btn primary" style="float: right;">Enviar mensaje</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End contact-page Area -->
+</div>
+{% endblock %}

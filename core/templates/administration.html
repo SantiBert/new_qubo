@@ -2,7 +2,7 @@
 {% block title %}Adminitración{% endblock %}
 {% block content %}
 <div class="contact-area section-padding-0-80">
-    <div class="container p-3" style="background-color: oldlace;">
+    <div class="container p-3 my-3 bg-primary text-white">
         <div class="row">
             <div class="col-12 p-3">
                 <div class="contact-title">
@@ -11,54 +11,68 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-6 text-center">
-                <div class="dropdown p-3">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        Notas
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'blog:create' %}">Crear Una nota</a>
-                        <a class="dropdown-item" href="{% url 'blogAdmin:blogAdminList' %}">Lista de notas</a>
-                    </div>
-                </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'blog:create' %}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4 " data-toggle="button"
+                    aria-pressed="false" autocomplete="off">Crear Una
+                    Noticia</a>
             </div>
-            <div class="col-12 col-lg-6 text-center">
-                <div class="dropdown p-3">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        Categorias
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'blog:category' %}">Crear Una Categoria</a>
-                        <a class="dropdown-item" href="{% url 'blog:listcategories' %}">Lista de categorias</a>
-                    </div>
-                </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'blogAdmin:blogAdminList' %}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4" data-toggle="button"
+                    aria-pressed="false" autocomplete="off">
+                    Lista de notas</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'blog:category' %}" type="button"
+                    class="btn btn-secondary btn-lg bg-white text-dark btn-block p-4" data-toggle="button"
+                    aria-pressed="false" autocomplete="off">Crear Una
+                    Crear Una categoria</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'blog:listcategories' %}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4" data-toggle="button"
+                    aria-pressed="false" autocomplete="off">
+                    Lista de categorias</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'social_list'%}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4" data-toggle="button"
+                    aria-pressed="false" autocomplete="off">
+                    Redes Sociales</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'profile'%}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4">
+                    Perfil</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center p-2">
+                <a href="{% url 'admincontact'%}" type="button"
+                    class="btn btn-secondary bg-white btn-lg text-dark btn-block p-4">
+                    Mensajes {% if total %}<span class="badge badge-dark">{{total}}</span>{% endif %}</a>
             </div>
 
-            {% comment 'contact' %}           
+            {% comment 'contact' %}
 
             <!--div class="col-12 col-lg-6 text-center">
                 <a class="btn btn-outline-primary mt-30 w-100 btn-block"
                     href="{% url 'admincontact'%}">Mensajes{% if total %}<span
                         class="badge badge-dark">{{total}}</span>{% endif %}</a>
-            </div -->
-           
+            </div>
 
-            <div class="col-12 col-lg-6 text-center">
-                <a class="btn btn-outline-primary mt-30 w-100 btn-block"
-                    href="{% url 'suscriptoradminlist'%}">Suscriptores</a>
-            </div>
-            
-            <div class="col-12 col-lg-6 text-center">
-                <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="{% url 'social_list'%}">Redes
-                    sociales</a>
-            </div>
-             {% endcomment %}
-            <div class="col-12 col-lg-6 text-center">
-                <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="{% url 'profile'%}">Mi perfil</a>
-            </div>
+
+        <div class="col-12 col-lg-6 text-center">
+            <a class="btn btn-outline-primary mt-30 w-100 btn-block"
+                href="{% url 'suscriptoradminlist'%}">Suscriptores</a>
         </div>
 
+        <div class="col-12 col-lg-6 text-center">
+            <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="{% url 'social_list'%}">Redes
+                sociales</a>
+        </div-->
+            {% endcomment %}
 
+        </div>
     </div>
-
-    {% endblock %}
+</div>
+{% endblock %}

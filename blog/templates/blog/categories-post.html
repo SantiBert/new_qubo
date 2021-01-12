@@ -1,155 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/qubo.png">
-    <link rel="icon" type="image/png" href="img/qubo.png">
-    <title>Qubo</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
-    <!--Bootstrap 4-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!--Css-->
-    <link rel="stylesheet" href="style.css">
-    <!--GoogleFonts-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="#"><img src="img/qubo.png" alt="Qubo LOGO" height="60px"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Libros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Series y Películas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Música </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Entrevistas </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Noticias </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Contacto </a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
-    <header>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel"
-            style="margin-bottom:20px;">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" filter-color="black" src="img/category.jpg"
-                        style="height: 550px; filter: brightness(80%);">
-                    <h1 id="centered">Titulo 1</h1>
-                </div>
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{category.name}}{% endblock %}
+{% block content %}
+<header>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" style="margin-bottom:20px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" filter-color="black" src="{{category.image.url}}"
+                    style="height: 550px; filter: brightness(80%);">
+                <h1 id="centered">{{category.name}}</h1>
             </div>
         </div>
+    </div>
 
-        <div class="container  bg-white  p-3 my-3 border">
-            <!-- Proyecto -->
-            <div class="row project">
-                <div class="col-lg-3 col-md-4 offset-lg-1 p-3 my-3 border" style="background-color: black;">
-                    <img class="img-fluid" src="img/card-3.jpg" width="255" height="202" alt="">
-                </div>
-                <div class="col-lg-7 col-md-8">
-                    <h2 class="section-heading title" style=" color: #000000;">Segundo proyecto</h2>
-                    <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the
-                        size of a marble, the most beautiful you can imagine. That beautiful, warm....</p>
-                    <p><a href="http://google.com">Más información</a></p>
-                </div>
+    <div class="container  bg-white  p-3 my-3 border">
+        {% for object in object_list %}
+        {% if forloop.counter|divisibleby:2 %}
+        <!-- Proyecto -->
+        <div class="row project">
+            <div class="col-lg-3 col-md-4 offset-lg-1 p-3 my-3 border" style="background-color: black;">
+                <img class="img-fluid" src="{{object.image_ref.url}}" width="255" height="202" alt="">
             </div>
-            <!-- Proyecto -->
-            <div class="row project">
-                <div class="col-lg-7 col-md-8">
-                    <h2 class="section-heading title" style=" color: #000000;">Primer proyecto</h2>
-                    <p class="categori-text">As we got further and further away, it [the Earth] diminished in size.
-                        Finally it shrank to the
-                        size of a marble, the most beautiful you can imagine. That beautiful, warm....</p>
-                    <p><a href="http://google.com">Más información</a></p>
-                </div>
-                <div class="col-lg-3 col-md-4 offset-lg-1 p-3 my-3 border" style="background-color: black;">
-                    <img class="img-fluid" src="img/card-1.jpg" width="255" height="202" alt="">
-                </div>
+            <div class="col-lg-7 col-md-8">
+                <h2 class="section-heading title" style=" color: #000000;">{{object.name}}</h2>
+                <p>{{ object.description |safe|truncatechars:"200"}}</p>
+                <p><a href="{% url 'blog:blog' object.id object.name|slugify %}">Más información</a></p>
             </div>
         </div>
-
-
-        <footer class="pt-4 pt-md-5 border-top">
-            <div class="row">
-                <div class="col-12 col-md">
-                    <img class="mb-2" src="img/qubo.png" alt="" height="60px">
-                    <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-                </div>
-                <div class="col-6 col-md">
-                    <h5 style="text-align: center;">Descripsion</h5>
-                    <p style="text-align: center; color:#ffffff;">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Error
-                        obcaecati
-                        maxime esse asperiores saepe
-                        impedit ipsam consectetur cupiditate voluptatibus? Veniam quo provident voluptate beatae
-                        similique!
-                    </p>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Features</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Inicio</a></li>
-                        <li><a class="text-muted" href="#">Libros</a></li>
-                        <li><a class="text-muted" href="#">Series y Películas</a></li>
-                        <li><a class="text-muted" href="#">Música</a></li>
-                        <li><a class="text-muted" href="#">Entrevistas</a></li>
-                        <li><a class="text-muted" href="#">Noticias</a></li>
-                        <li><a class="text-muted" href="#">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>About</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Team</a></li>
-                        <li><a class="text-muted" href="#">Locations</a></li>
-                        <li><a class="text-muted" href="#">Privacy</a></li>
-                        <li><a class="text-muted" href="#">Terms</a></li>
-                    </ul>
-                </div>
+        {% else %}
+        <!-- Proyecto -->
+        <div class="row project">
+            <div class="col-lg-7 col-md-8">
+                <h2 class="section-heading title" style="color: #000000;">{{object.name}}</h2>
+                <p class="categori-text">{{ object.description |safe|truncatechars:"200"}}</p>
+                <p><a href="{% url 'blog:blog' object.id object.name|slugify %}">Más información</a></p>
             </div>
-        </footer>
+            <div class="col-lg-3 col-md-4 offset-lg-1 p-3 my-3 border" style="background-color: black;">
+                <img class="img-fluid" src="{{object.image_ref.url}}" width="255" height="202" alt="">
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script src="main.js"></script>
-
-</html>
+    {% endblock %}
