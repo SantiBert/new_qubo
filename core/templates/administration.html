@@ -33,65 +33,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 text-center">
-                <div class="dropdown p-3">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        Sitios amigos
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'otherSitesCreate' %}">Crear Un enlase</a>
-                        <a class="dropdown-item" href="{% url 'otherSitesList' %}">Lista de enlases</a>
-                        <a class="dropdown-item" href="{% url 'friendSiteCreate' %}">Ingresar nueva nota de sitios de
-                            interes</a>
-                        <a class="dropdown-item" href="{% url 'friendSiteList' %}">Lista de nueva nota de sitios sitios
-                            de interes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 text-center">
-                <div class="dropdown p-3">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        Libros
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'bookentry'%}">Ingresar un libro</a>
-                        <a class="dropdown-item" href="{% url 'adminbook'%}">Lista de libros</a>
-                    </div>
-                </div>
-            </div>
 
+            {% comment 'contact' %}           
 
-            <div class="col-12 col-lg-6 text-center">
-                <div class="dropdown p-3">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        Citas
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'quoteCreate'%}">Ingresar una cita</a>
-                        <a class="dropdown-item" href="{% url 'quoteAdminList'%}">Lista de citas</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-6 text-center">
+            <!--div class="col-12 col-lg-6 text-center">
                 <a class="btn btn-outline-primary mt-30 w-100 btn-block"
                     href="{% url 'admincontact'%}">Mensajes{% if total %}<span
                         class="badge badge-dark">{{total}}</span>{% endif %}</a>
-            </div>
+            </div -->
+           
+
             <div class="col-12 col-lg-6 text-center">
                 <a class="btn btn-outline-primary mt-30 w-100 btn-block"
                     href="{% url 'suscriptoradminlist'%}">Suscriptores</a>
             </div>
+            
             <div class="col-12 col-lg-6 text-center">
                 <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="{% url 'social_list'%}">Redes
                     sociales</a>
             </div>
+             {% endcomment %}
             <div class="col-12 col-lg-6 text-center">
                 <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="{% url 'profile'%}">Mi perfil</a>
-            </div>
-            <div class="col-12 col-lg-6 text-center">
-                <a class="btn btn-outline-primary mt-30 w-100 btn-block" href="https://oscardelmastro.disqus.com/admin/"
-                    target="_blank">Comentarios</a>
             </div>
         </div>
 

@@ -77,7 +77,7 @@ class BlogEntryCreateView(CreateView):
     # Vista para crear los post con un de decorador para que solo los administardores puedan acceder
     model = BlogEntry
     form_class = BlogEntryForm
-    success_url = reverse_lazy('blog:blogs')
+    success_url = reverse_lazy('administration')
 
     # Devuelve al usuario actualmente logueado para el campo de User del Blog creado
     def form_valid(self, form):

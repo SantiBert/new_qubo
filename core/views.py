@@ -14,7 +14,18 @@ from blog.models import BlogCategory, BlogEntry
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, "index.html", )
+        featureds = BlogEntry.objects.filter(active=True, featured=True)
+        recents = BlogEntry.objects.filter(
+            active=True).order_by('-created_date')[:4]
+        categories = BlogCategory.objects.filter(is_active=True)
+        context = {
+
+            'featureds': featureds,
+            'recents': recents,
+            'categories': categories
+
+        }
+        return render(request, "index.html", context)
 
 
 class SearchView(View):
