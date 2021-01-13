@@ -1,3 +1,4 @@
+import secrets
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -14,12 +15,15 @@ from blog.models import BlogCategory, BlogEntry
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
+        all_note = list(BlogEntry.objects.filter(active=True))
         featureds = BlogEntry.objects.filter(active=True, featured=True)
         recents = BlogEntry.objects.filter(
             active=True).order_by('-created_date')[:4]
         categories = BlogCategory.objects.filter(is_active=True)
+        secure_random = secrets.SystemRandom()
+        list_of_random_items = secure_random.sample(all_note, 4)
         context = {
-
+            'ramdoms': list_of_random_items,
             'featureds': featureds,
             'recents': recents,
             'categories': categories
