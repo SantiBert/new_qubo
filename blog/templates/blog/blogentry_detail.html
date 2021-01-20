@@ -20,17 +20,23 @@
             <!-- Title -->
             <h1 class="mt-4">{{object.name}}</h1>
             <!-- Author -->
-            <p class="lead"> by
-                <a href="#">{{object.user.get_full_name}}</a>
-            </p>
+            {% for category in object.category.all %}
+            <h4><a href="{% url 'blog:categories' category.slug %}" class="badge badge-pillbadge badge-info">
+                    {{category.name }}</a></h4>
+            {% endfor %}
             <hr>
             <!-- Date/Time -->
             <p>{{ object.created_date.date }}</p>
             <hr>
             <!-- Post Content -->
             <p class="lead">{{object.description|safe}}</p>
+            <footer class="aling-bottom">
+                <h2>Tags:</h2>
+                {% for tag in object.tags.all %}
+                <a href="{% url 'blog:searchTags' tag %}" class="badge badge-primary">{{ tag }}</a>
+                {% endfor %}
+            </footer>
         </div>
-
 
         <div class="col-md-4">
             <!-- Search Widget -->

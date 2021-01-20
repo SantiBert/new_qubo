@@ -216,9 +216,6 @@ class SearchTagView(View):
         context = {
             'categories': categories,
             'featured': featured,
-            'quote': random.choice(quotes),
-            'web': web,
-            'sites': sites,
             'object_list': posts,
         }
 

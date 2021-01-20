@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--Css-->
-    <link rel="stylesheet" href="{% static 'css/stylo.css'%}">
+
     <!--GoogleFonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
@@ -30,14 +30,14 @@
     <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylo.css' %}">
     {% block extracss %}
     {% endblock %}
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static './img/qubo.png'%}" alt="Qubo LOGO"
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/qubo.png'%}" alt="Qubo LOGO"
                 height="60px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,6 +93,9 @@
                             style="height: 550px;">
                         <div class="carousel-caption">
                             <h1>{{obj.name}}</h1>
+                            {% for category in obj.category.all %}
+                            <span class="badge badge-light">{{ category.name }}</span>
+                            {% endfor %}
                             <p>{{obj.description|safe|truncatechars:"200"}}</p>
                             <a href="{% url 'blog:blog' obj.id obj.name|slugify %}">Ver más <i
                                     class="fas fa-angle-double-right"></i></a>
@@ -115,6 +118,12 @@
         {% for recent in recents %}
         <div>
             <img src="{{ recent.image_ref.url}}" alt="" href="{% url 'blog:blog' recent.id recent.name|slugify %}">
+            {% for category in recent.category.all %}
+            <a href=" {% url 'blog:categories' category.slug %}">
+                <span class="badge badge-light">
+                    {{ category.name }}</span>
+            </a>
+            {% endfor %}
             <h3>{{ recent.name }}</h3>
             <p>{{ recent.description |safe|truncatechars:"200"}}</p>
             <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">Ver más <i
@@ -125,18 +134,21 @@
     <img src="{% static 'img/qubo.png'%}" class="img-fluid img-thumbnail mx-auto d-block" width="70%"
         alt="Responsive image" style="margin-bottom:20px; padding: 15px;">
 
-    <div id="ramdom" class="container-fluid">
+    <div id="ramdom" class="container-fluid p-5">
         <div class="row">
             <div class="card-deck">
                 {% for ramdom in ramdoms %}
                 <div class="card">
                     <img class="card-img-top" src="{{ ramdom.image_ref.url}}" alt="{{ramdom.name}}">
+                    {% for category in ramdom.category.all %}
+                    <span class="badge badge-success">{{ category.name }}</span>
+                    {% endfor %}
                     <div class="card-block">
                         <h4 class="card-title" style="color: #000000;position: relative;text-align: center;">
                             {{ramdom.name}}</h4>
                         <p class="card-text p-2 justify" style="position: relative;text-align: center;">
                             {{ramdom.description|safe|truncatechars:"200"}}.</p>
-                        <p class="card-text p-2" style="position: relative;text-align: center;"><a
+                        <p class="card-text p-2" style="text-align: center;"><a
                                 href="{% url 'blog:blog' ramdom.id ramdom.name|slugify %}">Ver
                                 más</a>
                         </p>
@@ -229,8 +241,6 @@
     <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'js/aos.js' %}"></script>
-
-    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/maine.js'%}"></script>
 
 </html>
