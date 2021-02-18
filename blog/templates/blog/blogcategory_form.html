@@ -1,8 +1,12 @@
 {% extends 'baseregistration.html' %}
 {% load static %}
 {% block title %}Crear una categoría{% endblock %}
+{% block ExtraScript %}
+<script type="text/javascript" src="{% static "colorfield/jscolor/jscolor.js" %}"></script>
+<script type="text/javascript" src="{% static "colorfield/colorfield.js" %}"></script>
+<script type="text/javascript" src="{% static "colorfield/jscolor/jscolor.min.js" %}"></script>
+{% endblock %}
 {% block content %}
-
 <main role="main">
   <div class="container p-3" style="background-color: oldlace;">
     <div class="row mt-3 mb-5">

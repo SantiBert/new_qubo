@@ -8,6 +8,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
+from colorfield.fields import ColorField
 # Create your models here.
 
 
@@ -23,6 +24,7 @@ class BlogCategory(models.Model):
     image = models.ImageField(
         upload_to='category/', default="image_placeholder.jpg", null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    color = ColorField(default='#28a745')
 
     def __str__(self):
         return self.name

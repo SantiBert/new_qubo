@@ -20,16 +20,6 @@
     <!--GoogleFonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-    <link rel="stylesheet" href="{% static './css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static './css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/stylo.css' %}">
     {% block extracss %}
     {% endblock %}
@@ -71,6 +61,7 @@
     </nav>
     {% block content %}
     <header>
+    <!--carousel-->
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" style="height: 550px;">
             <ol class="carousel-indicators">
                 {% for obj in featureds %}
@@ -115,26 +106,34 @@
             </div>
         </div>
     </header>
+    <!--recientes-->
     <div class="news-card">
         {% for recent in recents %}
         <div>
-            <img src="{{ recent.image_ref.url}}" alt="" href="{% url 'blog:blog' recent.id recent.name|slugify %}">
+        <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">
+            <img src="{{ recent.image_ref.url}}" alt="" style='width:80%; height:55%; display:flex;'>
+        </a>
             {% for category in recent.category.all %}
             <a href=" {% url 'blog:categories' category.slug %}">
                 <span class="badge badge-light">
                     {{ category.name }}</span>
             </a>
             {% endfor %}
-            <h3>{{ recent.name }}</h3>
+            <h3>
+            <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">
+            {{ recent.name }}
+            </a>
+            </h3>
             <p style="color: white;">{{ recent.description |striptags |safe|truncatechars:"200"}}</p>
             <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">Ver más <i
                     class="fas fa-angle-double-right"></i></a>
         </div>
         {% endfor %}
     </div>
+<!--Banner-->
     <img src="{% static 'img/qubo.png'%}" class="img-fluid img-thumbnail mx-auto d-block" width="70%"
         alt="Responsive image" style="margin-bottom:20px; padding: 15px;">
-
+<!--Aleatorio-->
     <div id="ramdom" class="container-fluid p-5">
         <div class="row">
             <div class="card-deck">
@@ -142,7 +141,7 @@
                 <div class="card">
                     <img class="card-img-top" src="{{ ramdom.image_ref.url}}" alt="{{ramdom.name}}">
                     {% for category in ramdom.category.all %}
-                    <span class="badge badge-success">{{ category.name }}</span>
+                    <span class="badge" style="background-color:{{ category.color }};">{{ category.name }}</span>
                     {% endfor %}
                     <div class="card-block">
                         <h4 class="card-title" style="color: #000000;position: relative;text-align: center;">
@@ -191,36 +190,20 @@
                     <small class="d-block mb-3 text-muted">&copy; 2020-2021</small>
                 </div>
                 <div class="col-6 col-md">
-                    <h5 style="text-align: center;">Descripsion</h5>
-                    <p style="text-align: center; color:#ffffff;">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Error
-                        obcaecati
-                        maxime esse asperiores saepe
-                        impedit ipsam consectetur cupiditate voluptatibus? Veniam quo provident voluptate beatae
-                        similique!
-                    </p>
+                    <h5 style="text-align: center;">¿Qué es Qubo cultura?</h5>
+                    <p style="text-align: center; color:#ffffff;">Somos un proyecto independiente que apoya al arte y la cultura en todas sus expresiones</p>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Features</h5>
+                    <h5>Categorías</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Inicio</a></li>
-                        <li><a class="text-muted" href="#">Libros</a></li>
-                        <li><a class="text-muted" href="#">Series y Películas</a></li>
-                        <li><a class="text-muted" href="#">Música</a></li>
-                        <li><a class="text-muted" href="#">Entrevistas</a></li>
-                        <li><a class="text-muted" href="#">Noticias</a></li>
-                        <li><a class="text-muted" href="#">Contacto</a></li>
+                    
+                        <li><a class="text-muted" href="{% url 'index' %}">Inicio</a></li>
+                        {% for category in categories %}
+                        <li><a class="text-muted" href="{% url 'blog:categories' category.slug %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                        <li><a class="text-muted" href="{% url 'contact_us' %}">Contacto</a></li>
                     </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>About</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Team</a></li>
-                        <li><a class="text-muted" href="#">Locations</a></li>
-                        <li><a class="text-muted" href="#">Privacy</a></li>
-                        <li><a class="text-muted" href="#">Terms</a></li>
-                    </ul>
-                </div>
+                </div>                
             </div>
         </div>
     </footer>

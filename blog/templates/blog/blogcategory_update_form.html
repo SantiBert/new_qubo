@@ -1,8 +1,12 @@
 {% extends 'baseregistration.html' %}
 {% load static %}
 {% block title %}Editar una categoria{% endblock %}
+{% block ExtraScript %}
+<script type="text/javascript" src="{% static "colorfield/jscolor/jscolor.js" %}"></script>
+<script type="text/javascript" src="{% static "colorfield/colorfield.js" %}"></script>
+<script type="text/javascript" src="{% static "colorfield/jscolor/jscolor.min.js" %}"></script>
+{% endblock %}
 {% block content %}
-
 <main role="main">
   <div class="container p-3" style="background-color: oldlace;">
     <div class="row mt-3">
@@ -14,7 +18,7 @@
           </p>
           {% endif %}
           <h2> Editar {{object.name}}</h2>
-          <form action="" method="post">{% csrf_token %}
+          <form action="" method="post" enctype="multipart/form-data"ma>{% csrf_token %}
             <table>
               {{ form.as_p }}
             </table>

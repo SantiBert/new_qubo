@@ -4,9 +4,7 @@ from taggit.forms import TagWidget
 
 from .models import BlogEntry, BlogCategory
 
-
 class BlogEntryForm(forms.ModelForm):
-
     class Meta:
         model = BlogEntry
         fields = ['name', 'description', 'category',
@@ -27,8 +25,9 @@ class BlogCategoryEntryForm(forms.ModelForm):
 
     class Meta:
         model = BlogCategory
-        fields = ['slug', 'name','image']
+        fields = ['slug', 'name','image','color']
         widgets = {
             'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'slug'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'color': forms.TextInput(attrs={'class': 'form-control'}),
         }
