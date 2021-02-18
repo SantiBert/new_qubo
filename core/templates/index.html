@@ -95,14 +95,6 @@
                     </div>
                     {% endfor %}
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
         </div>
     </header>
@@ -111,11 +103,11 @@
         {% for recent in recents %}
         <div>
         <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">
-            <img src="{{ recent.image_ref.url}}" alt="" style='width:80%; height:55%; display:flex;'>
+            <img src="{{ recent.image_ref.url}}" alt="" style='width:480px; height:325px; display:flex;'>
         </a>
             {% for category in recent.category.all %}
             <a href=" {% url 'blog:categories' category.slug %}">
-                <span class="badge badge-light">
+                <span class="badge" style="background-color:{{ category.color }};">
                     {{ category.name }}</span>
             </a>
             {% endfor %}
