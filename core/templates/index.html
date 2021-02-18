@@ -97,7 +97,7 @@
                             <span class="badge badge-light">{{ category.name }}</span>
                             {% endfor %}
                             <p style="background-color: black; color: white;">
-                                {{obj.description|safe|truncatechars:"200"}}</p>
+                                {{obj.description|striptags|safe|truncatechars:"200"}}</p>
                             <a href="{% url 'blog:blog' obj.id obj.name|slugify %}">Ver más <i
                                     class="fas fa-angle-double-right"></i></a>
                         </div>
@@ -126,7 +126,7 @@
             </a>
             {% endfor %}
             <h3>{{ recent.name }}</h3>
-            <p style="background-color: black; color: white;">{{ recent.description |safe|truncatechars:"200"}}</p>
+            <p style="color: white;">{{ recent.description |striptags |safe|truncatechars:"200"}}</p>
             <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">Ver más <i
                     class="fas fa-angle-double-right"></i></a>
         </div>
@@ -148,7 +148,7 @@
                         <h4 class="card-title" style="color: #000000;position: relative;text-align: center;">
                             {{ramdom.name}}</h4>
                         <p class="card-text p-2 justify" style="position: relative;text-align: center;">
-                            {{ramdom.description|safe|truncatechars:"200"}}.</p>
+                            {{ramdom.description|striptags|safe|truncatechars:"200"}}.</p>
                         <p class="card-text p-2" style="text-align: center;"><a
                                 href="{% url 'blog:blog' ramdom.id ramdom.name|slugify %}">Ver
                                 más</a>
