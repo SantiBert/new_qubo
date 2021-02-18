@@ -27,7 +27,7 @@ class BlogCategoryEntryForm(forms.ModelForm):
 
     class Meta:
         model = BlogCategory
-        fields = ['slug', 'name']
+        fields = ['slug', 'name','image']
         widgets = {
             'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'slug'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
