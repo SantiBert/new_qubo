@@ -103,7 +103,7 @@
         {% for recent in recents %}
         <div>
         <a href="{% url 'blog:blog' recent.id recent.name|slugify %}">
-            <img src="{{ recent.image_ref.url}}" alt="" style='width:480px; height:325px; display:flex;'>
+            <img src="{{ recent.image_ref.url}}" alt="" style='width:480px; height:325px;'>
         </a>
             {% for category in recent.category.all %}
             <a href=" {% url 'blog:categories' category.slug %}">
